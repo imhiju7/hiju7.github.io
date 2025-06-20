@@ -35,6 +35,7 @@ function animateProfile() {
 
 function setupSkillFiltering() {
     const projectCards = document.querySelectorAll('.project-card');
+    const projectContainer = document.querySelector('.project-grid');
 
     gsap.from(projectCards, {
         scrollTrigger: '.project-grid',
@@ -58,6 +59,19 @@ function setupSkillFiltering() {
                     gsap.to(proj, {opacity: 0, y: 30, duration: 0.3, onComplete: () => {proj.style.display = 'none';}});
                 }
             });
+
+            if (projectContainer) {
+                const visible = Array.from(projectContainer.children).filter(el => getComputedStyle(el).display !== 'none');
+                if (visible.length) {
+                    const first = visible[0];
+                    const last = visible[visible.length - 1];
+                    const start = first.offsetLeft;
+                    const end = last.offsetLeft + last.offsetWidth;
+                    const width = end - start;
+                    const pos = start - (projectContainer.clientWidth - width) / 2;
+                    projectContainer.scrollTo({left: pos, behavior: 'smooth'});
+                }
+            }
         });
     });
 
