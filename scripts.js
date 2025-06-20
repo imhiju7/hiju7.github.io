@@ -16,7 +16,6 @@ function animateHero() {
       .from('.hero-subtitle', {duration: 0.8, y: 40, opacity: 0, ease: 'power3.out'}, '-=0.6')
       .from('.social-btn', {duration: 0.6, scale: 0, opacity: 0, stagger: 0.1, ease: 'back.out(1.7)'}, '-=0.4')
 
-
     gsap.timeline({repeat: -1, repeatDelay: 0.5})
         .to('#hero-title-text', {text: 'Full Stack Developer', duration: 2, ease: 'none'})
         .to({}, {duration: 1})

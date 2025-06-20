@@ -52,6 +52,10 @@ footer {
     transform: scale(0);
     pointer-events: none;
 }
+.scroll-btn {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    z-index: 50;
+}
 .gradient-bg {
     background: linear-gradient(60deg,#6366f1,#ec4899,#f59e0b);
     background-size: 200% 200%;
