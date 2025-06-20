@@ -79,10 +79,15 @@ footer {
     white-space: nowrap;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+    cursor: grab;
 }
 
 .gallery-item {
     scroll-snap-align: start;
     display: inline-block;
     margin-right: 1rem;
+}
+
+.gallery-container.dragging {
+    cursor: grabbing;
 }
