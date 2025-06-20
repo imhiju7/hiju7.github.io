@@ -118,6 +118,11 @@ footer {
     line-height: 1.25rem;
 }
 
+.certificate-card h3 {
+    font-size: 1rem;
+    line-height: 1.25rem;
+}
+
 .hobby-card h3 {
     font-size: 0.875rem;
     line-height: 1.25rem;
@@ -133,7 +138,8 @@ footer {
 
 @media (max-width: 640px) {
     .project-card,
-    .hobby-card {
+    .hobby-card,
+    .certificate-card {
         width: 18rem;
     }
     .gallery-container {
