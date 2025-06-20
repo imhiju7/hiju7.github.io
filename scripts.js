@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     animateHero();
     animateProfile();
+    animateCertificates();
     setupSkillFiltering();
     animateHobbies();
     setupButtonRipple();
@@ -30,6 +31,20 @@ function animateProfile() {
         y: 50,
         opacity: 0,
         duration: 1
+    });
+}
+
+function animateCertificates() {
+    const certCards = document.querySelectorAll('.certificate-card');
+    if (!certCards.length) return;
+    gsap.from(certCards, {
+        scrollTrigger: '.certificate-grid',
+        y: 80,
+        scale: 0.8,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 1,
+        ease: 'power3.out'
     });
 }
 
