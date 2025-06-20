@@ -42,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
     animateProfile();
     animateSkillsProjects();
     animateHobbyGallery();
+    setupButtonEffects();
+
 });
 
 
@@ -125,4 +127,31 @@ function animateHobbyGallery() {
             window.location.href = `interests/${hobby}.html`;
         });
     });
+}
+
+function setupButtonEffects() {
+    document.querySelectorAll('.social-btn').forEach(btn => {
+        const ripple = btn.querySelector('.ripple');
+        if (!ripple) return;
+        btn.addEventListener('mouseenter', () => {
+            gsap.fromTo(ripple, {scale: 0, opacity: 0.3}, {scale: 1.5, opacity: 0, duration: 0.6, ease: 'power1.out'});
+        });
+    });
+
+    const cta = document.querySelector('.cta-button');
+    if (cta) {
+        const ripple = cta.querySelector('.ripple');
+        cta.addEventListener('mouseenter', () => {
+            gsap.fromTo(ripple, {scale: 0, opacity: 0.3}, {scale: 1.5, opacity: 0, duration: 0.6, ease: 'power1.out'});
+        });
+    }
+
+    const dl = document.getElementById('download-cv');
+    if (dl) {
+        const ripple = dl.querySelector('.ripple');
+        dl.addEventListener('mouseenter', () => {
+            gsap.fromTo(ripple, {scale: 0, opacity: 0.3}, {scale: 1.5, opacity: 0, duration: 0.6, ease: 'power1.out'});
+        });
+        gsap.to(dl, {scale: 1.05, duration: 1, ease: 'power1.inOut', repeat: -1, yoyo: true});
+    }
 }
