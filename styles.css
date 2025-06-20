@@ -3,11 +3,6 @@ body {
     font-family: Arial, sans-serif;
     background: #0f172a;
     color: #e2e8f0;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-body::-webkit-scrollbar {
-    display: none;
 }
 header {
     background: #334155;
@@ -32,7 +27,7 @@ header nav a {
     padding: 1rem;
     border: 1px solid #475569;
     text-align: center;
-    flex: 1 0 200px;
+    flex: 0 0 200px;
     color: #e2e8f0;
 }
 footer {
@@ -62,13 +57,13 @@ footer {
     bottom: 24px;
     right: 24px;
     z-index: 9999;
-    padding: 16px;
+    padding: 14px;
     background: #6366f1;
     color: white;
-    border-radius: 9999px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+    border-radius: 50%;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.3s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 #scroll-button:hover {
     background: #4f46e5;
@@ -88,11 +83,13 @@ footer {
     -webkit-overflow-scrolling: touch;
     cursor: grab;
     scrollbar-width: none; /* Firefox */
+    scroll-padding-left: 2rem;
 }
 
 .gallery-container::-webkit-scrollbar {
     display: none; /* Chrome, Safari */
 }
+
 .gallery-item {
     scroll-snap-align: start;
     display: inline-block;
@@ -101,4 +98,12 @@ footer {
 
 .gallery-container.dragging {
     cursor: grabbing;
+}
+
+/* Utility to hide scrollbars */
+.no-scrollbar {
+    scrollbar-width: none; /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
 }
