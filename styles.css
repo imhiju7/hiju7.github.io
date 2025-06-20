@@ -76,12 +76,17 @@ footer {
 /* Horizontal Scroll Snap Gallery */
 .gallery-container {
     overflow-x: auto;
+    overflow-y: hidden;
     white-space: nowrap;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     cursor: grab;
+    scrollbar-width: none; /* Firefox */
 }
 
+.gallery-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
 .gallery-item {
     scroll-snap-align: start;
     display: inline-block;

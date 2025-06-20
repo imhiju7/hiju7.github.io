@@ -19,5 +19,16 @@
         <div class="card gallery-item"><h3>Template 4</h3></div>
     </div>
 </section>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.gallery-container').forEach(cont => {
+        cont.addEventListener('wheel', e => {
+            if (e.deltaY === 0) return;
+            e.preventDefault();
+            cont.scrollLeft += e.deltaY;
+        }, { passive: false });
+    });
+});
+</script>
 </body>
 </html>

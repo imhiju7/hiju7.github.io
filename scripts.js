@@ -187,6 +187,12 @@ function enableDragScroll(container) {
     container.addEventListener('touchend', () => {
         isDown = false;
     });
+
+    container.addEventListener('wheel', e => {
+        if (e.deltaY === 0) return;
+        e.preventDefault();
+        container.scrollLeft += e.deltaY;
+    }, { passive: false });
 }
 
 function setupCarousels() {
