@@ -112,12 +112,10 @@ footer {
 .no-scrollbar::-webkit-scrollbar {
     display: none; /* Chrome, Safari */
 }
-
 .project-card h3 {
     font-size: 1rem;
     line-height: 1.25rem;
 }
-
 .project-card p {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -127,7 +125,6 @@ footer {
     font-size: 0.75rem;
     line-height: 1rem;
 }
-
 @media (max-width: 640px) {
     .project-card,
     .hobby-card {
