@@ -1,3 +1,7 @@
+html {
+    font-size: 15px;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -27,8 +31,9 @@ header nav a {
     padding: 1rem;
     border: 1px solid #475569;
     text-align: center;
-    flex: 0 0 200px;
+    flex: 0 0 160px;
     color: #e2e8f0;
+    font-size: 0.875rem;
 }
 footer {
     text-align: center;
@@ -106,4 +111,29 @@ footer {
 }
 .no-scrollbar::-webkit-scrollbar {
     display: none; /* Chrome, Safari */
+}
+
+.project-card h3 {
+    font-size: 1rem;
+    line-height: 1.25rem;
+}
+
+.project-card p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+
+@media (max-width: 640px) {
+    .project-card,
+    .hobby-card {
+        width: 15rem;
+    }
+    .gallery-container {
+        scroll-padding-left: 1rem;
+    }
 }
