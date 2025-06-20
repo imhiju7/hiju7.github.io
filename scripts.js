@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Character card animation
     animateCharacterCard();
+
+    // Hobby Gallery animation
     animateHobbyGallery();
 
     // Download CV button entrance and pulse
