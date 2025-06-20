@@ -214,22 +214,5 @@ function enableDragScroll(container) {
 function setupCarousels() {
     document.querySelectorAll('.gallery-container').forEach(container => {
         enableDragScroll(container);
-        const prev = container.parentElement.querySelector('.carousel-prev');
-        const next = container.parentElement.querySelector('.carousel-next');
-        if (prev && next) {
-            const scrollAmount = () => {
-                const item = container.querySelector('.gallery-item');
-                if (!item) return 0;
-                const style = getComputedStyle(item);
-                const gap = parseInt(style.marginRight) || 0;
-                return item.offsetWidth + gap;
-            };
-            prev.addEventListener('click', () => {
-                container.scrollBy({left: -scrollAmount(), behavior: 'smooth'});
-            });
-            next.addEventListener('click', () => {
-                container.scrollBy({left: scrollAmount(), behavior: 'smooth'});
-            });
-        }
     });
 }
