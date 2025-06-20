@@ -73,3 +73,19 @@ footer {
     background: #222;
     color: #fff;
 }
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile-img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+.cv {
+    padding: 2rem;
+}
+
