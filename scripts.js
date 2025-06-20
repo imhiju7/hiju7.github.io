@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+    gsap.registerPlugin(ScrollTrigger);
 
     // Hero Animation
     const heroTl = gsap.timeline();
@@ -10,31 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
         .from('.cta-button', {duration:1, scale:0, ease:'elastic.out(1,0.5)'}, '-=0.4');
     gsap.to('.particle', {duration:6, y:-20, x:10, ease:'power1.inOut', yoyo:true, repeat:-1, stagger:0.5});
 
-    // Repeating hero text animation
-    gsap.timeline({repeat:-1, repeatDelay:0.5})
-        .to('#hero-title-text', {text:'Full Stack Developer', duration:2, ease:'none'})
-        .to({}, {duration:1})
-        .to('#hero-title-text', {text:'', duration:0.5, ease:'none'});
-
     // Character card animation
     animateCharacterCard();
     animateHobbyGallery();
-
-    // Download CV button entrance and pulse
-    gsap.from('#download-cv', {
-        scrollTrigger: '#download-cv',
-        duration: 1,
-        scale: 0,
-        opacity: 0,
-        ease: 'back.out(1.7)'
-    });
-    gsap.to('#download-cv', {
-        scale: 1.05,
-        repeat: -1,
-        yoyo: true,
-        duration: 1.5,
-        ease: 'power1.inOut'
-    });
 });
 
 function animateCharacterCard() {
