@@ -18,8 +18,8 @@ header nav a {
     padding: 2rem;
 }
 .cards {
-    display: flex;
-    flex-wrap: wrap;
+    display: inline-flex;
+    flex-wrap: nowrap;
     gap: 1rem;
 }
 .card {
@@ -27,7 +27,7 @@ header nav a {
     padding: 1rem;
     border: 1px solid #475569;
     text-align: center;
-    flex: 1 0 200px;
+    flex: 0 0 200px;
     color: #e2e8f0;
 }
 footer {
@@ -57,18 +57,53 @@ footer {
     bottom: 24px;
     right: 24px;
     z-index: 9999;
-    padding: 12px;
+    padding: 14px;
     background: #6366f1;
     color: white;
     border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 #scroll-button:hover {
     background: #4f46e5;
+    transform: translateY(-2px);
 }
 .gradient-bg {
     background: linear-gradient(60deg,#6366f1,#ec4899,#f59e0b);
     background-size: 200% 200%;
+}
+
+/* Horizontal Scroll Snap Gallery */
+.gallery-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+    scrollbar-width: none; /* Firefox */
+    scroll-padding-left: 2rem;
+}
+
+.gallery-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+.gallery-item {
+    scroll-snap-align: start;
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.gallery-container.dragging {
+    cursor: grabbing;
+}
+
+/* Utility to hide scrollbars */
+.no-scrollbar {
+    scrollbar-width: none; /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
 }

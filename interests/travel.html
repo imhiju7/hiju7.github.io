@@ -12,12 +12,23 @@
     <h1>Du lịch</h1>
 </header>
 <section class="gallery min-h-screen">
-    <div class="cards">
-        <div class="card"><h3>Template 1</h3></div>
-        <div class="card"><h3>Template 2</h3></div>
-        <div class="card"><h3>Template 3</h3></div>
-        <div class="card"><h3>Template 4</h3></div>
+    <div class="cards gallery-container no-scrollbar">
+        <div class="card gallery-item"><h3>Template 1</h3></div>
+        <div class="card gallery-item"><h3>Template 2</h3></div>
+        <div class="card gallery-item"><h3>Template 3</h3></div>
+        <div class="card gallery-item"><h3>Template 4</h3></div>
     </div>
 </section>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.gallery-container').forEach(cont => {
+        cont.addEventListener('wheel', e => {
+            if (e.deltaY === 0) return;
+            e.preventDefault();
+            cont.scrollLeft += e.deltaY;
+        }, { passive: false });
+    });
+});
+</script>
 </body>
 </html>

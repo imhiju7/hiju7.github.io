@@ -1,11 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
     animateHero();
     animateProfile();
     setupSkillFiltering();
     animateHobbies();
     setupButtonRipple();
     setupScrollButton();
+    setupCarousels();
 });
 
 function animateHero() {
@@ -65,6 +67,7 @@ function setupSkillFiltering() {
         });
     });
 }
+
 function animateHobbies() {
     const hobbyCards = document.querySelectorAll('.hobby-card');
     gsap.from(hobbyCards, {
@@ -134,6 +137,83 @@ function setupScrollButton() {
                 currentIndex = i;
                 break;
             }
+        }
+    });
+}
+
+function enableDragScroll(container) {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    container.addEventListener('mousedown', e => {
+        isDown = true;
+        container.classList.add('dragging');
+        startX = e.pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+    });
+
+    container.addEventListener('mouseleave', () => {
+        isDown = false;
+        container.classList.remove('dragging');
+    });
+
+    container.addEventListener('mouseup', () => {
+        isDown = false;
+        container.classList.remove('dragging');
+    });
+
+    container.addEventListener('mousemove', e => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - container.offsetLeft;
+        const walk = x - startX;
+        container.scrollLeft = scrollLeft - walk;
+    });
+
+    container.addEventListener('touchstart', e => {
+        isDown = true;
+        startX = e.touches[0].pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+    });
+
+    container.addEventListener('touchmove', e => {
+        if (!isDown) return;
+        const x = e.touches[0].pageX - container.offsetLeft;
+        const walk = x - startX;
+        container.scrollLeft = scrollLeft - walk;
+    });
+
+    container.addEventListener('touchend', () => {
+        isDown = false;
+    });
+
+    container.addEventListener('wheel', e => {
+        if (e.deltaY === 0) return;
+        e.preventDefault();
+        container.scrollLeft += e.deltaY;
+    }, { passive: false });
+}
+
+function setupCarousels() {
+    document.querySelectorAll('.gallery-container').forEach(container => {
+        enableDragScroll(container);
+        const prev = container.parentElement.querySelector('.carousel-prev');
+        const next = container.parentElement.querySelector('.carousel-next');
+        if (prev && next) {
+            const scrollAmount = () => {
+                const item = container.querySelector('.gallery-item');
+                if (!item) return 0;
+                const style = getComputedStyle(item);
+                const gap = parseInt(style.marginRight) || 0;
+                return item.offsetWidth + gap;
+            };
+            prev.addEventListener('click', () => {
+                container.scrollBy({left: -scrollAmount(), behavior: 'smooth'});
+            });
+            next.addEventListener('click', () => {
+                container.scrollBy({left: scrollAmount(), behavior: 'smooth'});
+            });
         }
     });
 }
