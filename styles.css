@@ -126,7 +126,8 @@ footer {
 .card-description {
     font-size: 0.75rem;
     line-height: 1rem;
-    overflow-wrap: anywhere;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 @media (max-width: 640px) {
