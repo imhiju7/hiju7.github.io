@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     gsap.registerPlugin(ScrollTrigger, TextPlugin);
-
     animateHero();
     animateProfile();
     setupSkillFiltering();
@@ -16,6 +15,7 @@ function animateHero() {
     tl.from('.hero-title', {duration: 1, y: 80, opacity: 0, ease: 'power4.out'})
       .from('.hero-subtitle', {duration: 0.8, y: 40, opacity: 0, ease: 'power3.out'}, '-=0.6')
       .from('.social-btn', {duration: 0.6, scale: 0, opacity: 0, stagger: 0.1, ease: 'back.out(1.7)'}, '-=0.4')
+
 
     gsap.timeline({repeat: -1, repeatDelay: 0.5})
         .to('#hero-title-text', {text: 'Full Stack Developer', duration: 2, ease: 'none'})
@@ -66,7 +66,6 @@ function setupSkillFiltering() {
         });
     });
 }
-
 function animateHobbies() {
     const hobbyCards = document.querySelectorAll('.hobby-card');
     gsap.from(hobbyCards, {
@@ -101,7 +100,6 @@ function setupButtonRipple() {
         gsap.to(dl, {scale: 1.05, duration: 1.2, ease: 'power1.inOut', repeat: -1, yoyo: true});
     }
 }
-
 function setupScrollButton() {
     const btn = document.getElementById("scroll-btn");
     if (!btn) return;
@@ -122,4 +120,3 @@ function setupScrollButton() {
         icon.classList.toggle("rotate-180", atBottom);
     });
 }
-
