@@ -73,6 +73,7 @@ footer {
     background: #222;
     color: #fff;
 }
+
 .profile {
     display: flex;
     align-items: center;
@@ -87,3 +88,4 @@ footer {
 .cv {
     padding: 2rem;
 }
+
