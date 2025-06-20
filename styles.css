@@ -115,7 +115,6 @@ footer {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
-
 @media (max-width: 640px) {
     .project-card,
     .hobby-card {
