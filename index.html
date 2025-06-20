@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Hiju</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -31,18 +31,18 @@
         <h1 class="hero-title text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
             <span id="hero-title-text"></span>
         </h1>
-        <p class="hero-subtitle text-gray-300 mb-8 px-4 max-w-2xl">Tôi tạo ra những trải nghiệm web tuyệt vời với thiết kế hiện đại và công nghệ tiên tiến</p>
+        <p class="hero-subtitle text-gray-300 mb-8 px-4 max-w-2xl">Tâm phải bất biến, Trí phải thay đổi theo thời đại để vươn tầm</p>
 </section>
     <!-- Profile -->
     <section id="profile" class="h-screen flex items-center justify-center px-4 bg-slate-800">
         <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 max-w-md text-center space-y-4">
             <img class="mx-auto w-32 h-32 rounded-full border-4 border-primary" src="images/profile.svg" alt="Profile">
-            <h2 class="text-3xl font-bold">Nguyễn Văn A</h2>
+            <h2 class="text-3xl font-bold">Nguyễn Tấn Hiệu</h2>
             <ul class="text-gray-300 space-y-1">
-                <li><strong>Ngày sinh:</strong> 01/01/1990</li>
-                <li><strong>Cung:</strong> Ma Kết</li>
-                <li><strong>Nơi sống:</strong> Hà Nội</li>
-                <li><strong>Mối quan hệ:</strong> Độc thân</li>
+                <li><strong>Ngày sinh:</strong> 04/11/2003</li>
+                <li><strong>Cung:</strong> Bọ cạp</li>
+                <li><strong>Nơi sống:</strong> TP. Hồ Chí Minh</li>
+                <li><strong>Mối quan hệ:</strong> Hẹn hò</li>
             </ul>
         </div>
     </section>
@@ -53,25 +53,25 @@
             <h2 class="section-title text-4xl md:text-6xl font-bold text-center mb-16 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Kĩ năng &amp; Dự án</h2>
             <div class="skill-grid gallery-container no-scrollbar mb-12 text-center">
                 <div class="skill-card cursor-pointer bg-white/5 border border-white/10 rounded-xl p-4 gallery-item" data-skill="all">All</div>
-                <div class="skill-card cursor-pointer bg-white/5 border border-white/10 rounded-xl p-4 gallery-item" data-skill="frontend">Frontend</div>
-                <div class="skill-card cursor-pointer bg-white/5 border border-white/10 rounded-xl p-4 gallery-item" data-skill="backend">Backend</div>
-                <div class="skill-card cursor-pointer bg-white/5 border border-white/10 rounded-xl p-4 gallery-item" data-skill="design">Design</div>
-                <div class="skill-card cursor-pointer bg-white/5 border border-white/10 rounded-xl p-4 gallery-item" data-skill="devops">DevOps</div>
+                <div class="skill-card cursor-pointer bg-white/5 border border-white/10 rounded-xl p-4 gallery-item" data-skill="machinelearning">Machine Learning</div>
+                <div class="skill-card cursor-pointer bg-white/5 border border-white/10 rounded-xl p-4 gallery-item" data-skill="llns">LLMs</div>
+                <div class="skill-card cursor-pointer bg-white/5 border border-white/10 rounded-xl p-4 gallery-item" data-skill="finetuning">Fine-Tuning</div>
+                <div class="skill-card cursor-pointer bg-white/5 border border-white/10 rounded-xl p-4 gallery-item" data-skill="pytorch">Pytorch</div>
+                <div class="skill-card cursor-pointer bg-white/5 border border-white/10 rounded-xl p-4 gallery-item" data-skill="python">Python</div>
             </div>
             <div class="project-carousel relative">
                 <button class="carousel-prev absolute left-0 top-1/2 -translate-y-1/2 p-2 bg-primary text-white rounded-full shadow hidden md:block z-10" aria-label="Prev">
                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
                 </button>
                 <div class="project-grid gallery-container no-scrollbar px-8">
-                    <div class="project-card bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl w-60 h-80 flex-none overflow-hidden cursor-pointer gallery-item" data-skill="frontend" data-project="portfolio">
-                        <img src="images/project-portfolio.svg" alt="Portfolio" class="w-full h-32 object-cover">
+                    <div class="project-card bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl w-60 h-80 flex-none overflow-hidden cursor-pointer gallery-item" data-skill="machinelearning" data-project="water-potability-classification">
+                        <img src="images/project-water-potability-classification.jpg" alt="water-potability-classification" class="w-full h-32 object-cover">
                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Portfolio Website</h3>
-                            <p class="text-gray-400 text-sm mb-4">Trang web giới thiệu cá nhân sử dụng Tailwind và GSAP.</p>
+                            <h3 class="text-xl font-bold mb-2">Water Potability Classification</h3>
+                            <p class="text-gray-400 text-sm mb-4">Xây dựng hệ thống phân loại nguồn nước dựa trên dữ liệu đo tại nguồn. Phân loại nước bị ô nhiễm và nước có thể sử dụng được</p>
                             <div class="flex flex-wrap gap-2 text-xs">
-                                <span class="px-2 py-1 bg-primary/20 text-primary rounded">HTML</span>
-                                <span class="px-2 py-1 bg-primary/20 text-primary rounded">TailwindCSS</span>
-                                <span class="px-2 py-1 bg-primary/20 text-primary rounded">GSAP</span>
+                                <span class="px-2 py-1 bg-primary/20 text-primary rounded">Machine Learning</span>
+                                <span class="px-2 py-1 bg-primary/20 text-primary rounded">Python</span>
                             </div>
                         </div>
                     </div>
