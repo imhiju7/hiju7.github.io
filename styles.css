@@ -118,24 +118,27 @@ footer {
     line-height: 1.25rem;
 }
 
+.certificate-card h3 {
+    font-size: 1rem;
+    line-height: 1.25rem;
+}
+
 .hobby-card h3 {
     font-size: 0.875rem;
     line-height: 1.25rem;
 }
 
-.project-card p {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+.card-description {
     font-size: 0.75rem;
     line-height: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 @media (max-width: 640px) {
     .project-card,
-    .hobby-card {
+    .hobby-card,
+    .certificate-card {
         width: 18rem;
     }
     .gallery-container {

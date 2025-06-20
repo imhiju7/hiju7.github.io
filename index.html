@@ -147,14 +147,21 @@
     <section id="certificates" class="h-screen flex flex-col py-20 px-4 bg-slate-800">
         <div class="max-w-5xl mx-auto">
             <h2 class="section-title text-4xl md:text-6xl font-bold text-center mb-16 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Certificate</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="certificate-card bg-white/5 border border-white/10 rounded-xl p-6">
-                    <div class="flex items-center gap-4 mb-2">
-                        <img src="images/logo-cert-1.jpg" alt="Logo" class="w-12 h-12">
-                        <h3 class="font-semibold text-lg">Google Project Management</h3>
+            <div class="certificate-carousel relative">
+                <div class="certificate-grid gallery-container no-scrollbar px-8">
+                    <div class="certificate-card group relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl w-72 h-96 flex-none overflow-hidden cursor-pointer gallery-item" data-certificate="google-project-management">
+                        <div class="card-image relative overflow-hidden">
+                            <img src="images/logo-cert-1.jpg" alt="Logo" class="w-full h-24 object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                            <div class="absolute top-4 right-4"><div class="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">🎓</div></div>
+                        </div>
+                        <div class="card-content p-6">
+                            <h3 class="card-title text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors truncate">Google Project Management</h3>
+                            <p class="card-description text-gray-400 text-sm mb-1">04/2023 - 10/2023</p>
+                            <p class="card-description text-gray-300 text-sm">This course deepened my understanding of project management processes.</p>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
-                    <p class="text-gray-400 text-sm mb-1">04/2023 - 10/2023</p>
-                    <p class="text-gray-300 text-sm">This course deepened my understanding of project management processes.</p>
                 </div>
             </div>
         </div>
