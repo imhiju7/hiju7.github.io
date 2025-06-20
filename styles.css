@@ -36,10 +36,8 @@ footer {
     background: #1e293b;
     color: #fff;
 }
+
 .profile-img {
     width: 150px;
     border-radius: 50%;
-}
-.cv {
-    padding: 2rem;
 }
