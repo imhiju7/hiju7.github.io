@@ -43,3 +43,16 @@ footer {
 .cv {
     padding: 2rem;
 }
+.ripple {
+    position: absolute;
+    inset: 0;
+    background: white;
+    opacity: 0.2;
+    border-radius: inherit;
+    transform: scale(0);
+    pointer-events: none;
+}
+.gradient-bg {
+    background: linear-gradient(60deg,#6366f1,#ec4899,#f59e0b);
+    background-size: 200% 200%;
+}
