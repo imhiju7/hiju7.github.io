@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     gsap.registerPlugin(ScrollTrigger, TextPlugin);
-
     animateHero();
     animateProfile();
     setupSkillFiltering();
@@ -66,7 +65,6 @@ function setupSkillFiltering() {
         });
     });
 }
-
 function animateHobbies() {
     const hobbyCards = document.querySelectorAll('.hobby-card');
     gsap.from(hobbyCards, {
@@ -139,4 +137,3 @@ function setupScrollButton() {
         }
     });
 }
-
