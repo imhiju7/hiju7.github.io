@@ -6,14 +6,6 @@ body {
 }
 header {
     background: #334155;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f0f0f0;
-    color: #333;
-}
-header {
-    background: #444;
     color: #fff;
     padding: 1rem;
 }
@@ -37,48 +29,6 @@ header nav a {
     text-align: center;
     flex: 1 0 200px;
     color: #e2e8f0;
-    background: #fff;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    text-align: center;
-    flex: 1 0 200px;
-}
-.character-status {
-    max-width: 400px;
-}
-.stat {
-    margin-bottom: 0.5rem;
-}
-.stat .bar {
-    background: #ddd;
-    height: 10px;
-    margin-top: 0.2rem;
-    position: relative;
-}
-.stat .bar div {
-    background: #4caf50;
-    height: 100%;
-}
-.cert img {
-    max-width: 100px;
-    display: block;
-    margin: 0 auto 1rem;
-}
-.contact-buttons a {
-    margin-right: 1rem;
-    text-decoration: none;
-    color: #fff;
-    background: #444;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-}
-.cv-btn {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background: #4caf50;
-    color: #fff;
-    text-decoration: none;
 }
 footer {
     text-align: center;
@@ -86,22 +36,8 @@ footer {
     background: #1e293b;
     color: #fff;
 }
-    background: #222;
-    color: #fff;
-}
-
-.profile {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
 
 .profile-img {
     width: 150px;
     border-radius: 50%;
 }
-
-.cv {
-    padding: 2rem;
-}
-
