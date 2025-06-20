@@ -107,3 +107,21 @@ footer {
 .no-scrollbar::-webkit-scrollbar {
     display: none; /* Chrome, Safari */
 }
+
+.project-card p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+@media (max-width: 640px) {
+    .project-card,
+    .hobby-card {
+        width: 15rem;
+    }
+    .gallery-container {
+        scroll-padding-left: 1rem;
+    }
+}
