@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     gsap.registerPlugin(ScrollTrigger, TextPlugin);
-
     animateHero();
     animateProfile();
     setupSkillFiltering();
@@ -66,7 +65,6 @@ function setupSkillFiltering() {
         });
     });
 }
-
 function animateHobbies() {
     const hobbyCards = document.querySelectorAll('.hobby-card');
     gsap.from(hobbyCards, {
@@ -101,7 +99,6 @@ function setupButtonRipple() {
         gsap.to(dl, {scale: 1.05, duration: 1.2, ease: 'power1.inOut', repeat: -1, yoyo: true});
     }
 }
-
 function setupScrollButton() {
     const btn = document.getElementById("scroll-btn");
     if (!btn) return;
@@ -122,4 +119,3 @@ function setupScrollButton() {
         icon.classList.toggle("rotate-180", atBottom);
     });
 }
-
