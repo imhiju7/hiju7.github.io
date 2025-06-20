@@ -129,6 +129,7 @@ footer {
 }
 
 .card-description {
+    white-space: normal;
     font-size: 0.75rem;
     line-height: 1rem;
     word-wrap: break-word;
