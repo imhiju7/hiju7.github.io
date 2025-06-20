@@ -51,7 +51,8 @@ function setupSkillFiltering() {
             projectCards.forEach(proj => {
                 const show = skill === 'all' || proj.dataset.skill === skill;
                 if (show) {
-                    proj.style.display = 'block';
+                    // Ensure gallery items keep their inline layout when shown
+                    proj.style.display = 'inline-block';
                     gsap.fromTo(proj, {opacity: 0, y: 30}, {opacity: 1, y: 0, duration: 0.5});
                 } else {
                     gsap.to(proj, {opacity: 0, y: 30, duration: 0.3, onComplete: () => {proj.style.display = 'none';}});
@@ -127,16 +128,17 @@ function setupScrollButton() {
     });
 
     window.addEventListener('scroll', () => {
-        const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 50;
-        if (arrowIcon) {
-            arrowIcon.style.transform = nearBottom ? 'rotate(180deg)' : 'rotate(0deg)';
-        }
         for (let i = 0; i < sections.length; i++) {
             const rect = sections[i].getBoundingClientRect();
             if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
                 currentIndex = i;
                 break;
             }
+        }
+
+        if (arrowIcon) {
+            const atLast = currentIndex === sections.length - 1;
+            arrowIcon.style.transform = atLast ? 'rotate(180deg)' : 'rotate(0deg)';
         }
     });
 }
