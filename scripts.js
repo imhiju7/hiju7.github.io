@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
     animateProfile();
     animateSkillsProjects();
     animateHobbyGallery();
-
 });
 
 
