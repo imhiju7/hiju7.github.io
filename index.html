@@ -37,16 +37,15 @@
 </head>
 <body class="bg-slate-900 text-white">
     <!-- Hero Section -->
-    <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden bg-slate-900">
+        <div class="gradient-bg absolute inset-0 -z-10" style="background:linear-gradient(60deg,#6366f1,#ec4899,#f59e0b);background-size:200% 200%;"></div>
         <div class="absolute inset-0 overflow-hidden">
             <div class="particle absolute w-1 h-1 bg-primary rounded-full opacity-70" style="left:10%;top:20%;"></div>
             <div class="particle absolute w-1 h-1 bg-accent rounded-full opacity-70" style="left:80%;top:30%;"></div>
             <div class="particle absolute w-1 h-1 bg-secondary rounded-full opacity-70" style="left:60%;top:70%;"></div>
         </div>
         <div class="hero-content text-center z-10 px-4 max-w-4xl">
-            <h1 class="hero-title text-6xl md:text-8xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent mb-6">
-                <span id="hero-title-text">Full Stack Developer</span>
-            </h1>
+            <h1 class="hero-title text-6xl md:text-8xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent mb-6"><span id="hero-title-text"></span></h1>
             <p class="hero-subtitle text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">Tôi tạo ra những trải nghiệm web tuyệt vời với thiết kế hiện đại và công nghệ tiên tiến</p>
             <div class="social-buttons flex justify-center gap-4 mb-8">
                 <a href="#" class="social-btn group relative overflow-hidden bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full transition-all duration-300 transform hover:scale-110">
@@ -69,63 +68,24 @@
             </button>
         </div>
     </section>
-
-    <!-- Info Section with Character Card -->
-    <section id="info" class="py-20 px-4 bg-slate-800">
-        <div class="character-card relative bg-gradient-to-br from-slate-800/90 to-slate-900/90 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl max-w-md mx-auto">
-            <div class="avatar-container relative mb-6">
-                <div class="avatar w-24 h-24 mx-auto relative">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Character" class="w-full h-full rounded-full border-4 border-primary shadow-lg shadow-primary/50">
-                    <div class="level-badge absolute -top-2 -right-2 bg-gradient-to-r from-secondary to-yellow-500 text-black px-2 py-1 rounded-full text-xs font-bold">LV.25</div>
-                </div>
-                <div class="status-indicator absolute top-0 right-1/4 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-            </div>
-            <div class="text-center mb-6">
-                <h3 class="text-xl font-bold text-white mb-1">Nguyễn Văn A</h3>
-                <p class="text-primary font-medium">Full Stack Developer</p>
-                <p class="text-gray-400 text-sm">Class: Code Wizard</p>
-            </div>
-            <div class="stats-container space-y-4">
-                <div class="stat-item">
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-gray-300 text-sm flex items-center"><span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>Frontend Skills</span>
-                        <span class="stat-value text-blue-400 font-bold">95/100</span>
-                    </div>
-                    <div class="stat-bar w-full h-2 bg-gray-700 rounded-full overflow-hidden">
-                        <div class="stat-fill h-full bg-gradient-to-r from-blue-500 to-blue-400 rounded-full" data-value="95" style="width:0%;"></div>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-gray-300 text-sm flex items-center"><span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>Backend Skills</span>
-                        <span class="stat-value text-green-400 font-bold">88/100</span>
-                    </div>
-                    <div class="stat-bar w-full h-2 bg-gray-700 rounded-full overflow-hidden">
-                        <div class="stat-fill h-full bg-gradient-to-r from-green-500 to-green-400 rounded-full" data-value="88" style="width:0%;"></div>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-gray-300 text-sm flex items-center"><span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>Design Skills</span>
-                        <span class="stat-value text-purple-400 font-bold">78/100</span>
-                    </div>
-                    <div class="stat-bar w-full h-2 bg-gray-700 rounded-full overflow-hidden">
-                        <div class="stat-fill h-full bg-gradient-to-r from-purple-500 to-purple-400 rounded-full" data-value="78" style="width:0%;"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="exp-container mt-6 p-4 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 rounded-lg border border-yellow-500/20">
-                <div class="flex justify-between items-center mb-2"><span class="text-yellow-400 text-sm font-medium">Experience Points</span><span class="text-yellow-400 font-bold">15,420 XP</span></div>
-                <div class="w-full h-2 bg-gray-700 rounded-full overflow-hidden"><div class="exp-bar h-full bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full" style="width:75%;"></div></div>
-                <p class="text-gray-400 text-xs mt-1">580 XP to next level</p>
-            </div>
+    <!-- Profile Section -->
+    <section id="profile" class="py-20 px-4 bg-slate-800">
+        <div class="max-w-md mx-auto text-center space-y-4">
+            <img class="mx-auto w-32 h-32 rounded-full border-4 border-primary shadow-lg" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="Profile">
+            <h2 class="text-3xl font-bold">Nguyễn Văn A</h2>
+            <ul class="text-gray-300 space-y-1">
+                <li><strong>Ngày sinh:</strong> 01/01/1990</li>
+                <li><strong>Cung:</strong> Ma Kết</li>
+                <li><strong>Nơi sống:</strong> Hà Nội</li>
+                <li><strong>Mối quan hệ:</strong> Độc thân</li>
+            </ul>
         </div>
     </section>
 
     <!-- Skills and Projects -->
     <section id="skills" class="py-20 px-4 bg-slate-900">
         <div class="max-w-7xl mx-auto">
-            <h2 class="section-title text-4xl md:text-6xl font-bold text-center mb-16 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Kĩ năng & Dự án</h2>
+            <h2 class="section-title text-4xl md:text-6xl font-bold text-center mb-16 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Kĩ năng &amp; Dự án</h2>
             <div class="skill-grid grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
                 <div class="skill-card group bg-white/5 border border-white/10 rounded-xl p-4 text-center cursor-pointer hover:bg-primary/20 transition" data-skill="all">
                     <h3 class="font-semibold text-white group-hover:text-primary">All</h3>
@@ -252,7 +212,10 @@
 
     <!-- Contact Section -->
     <section id="contact" class="py-10 bg-slate-900 text-center">
-        <a id="download-cv" href="cv.pdf" download class="download-btn inline-block bg-primary hover:bg-primary/80 text-white font-semibold px-6 py-3 rounded-full transition transform hover:scale-105">Download CV</a>
+        <a id="download-cv" href="cv.pdf" download class="relative overflow-hidden inline-block bg-primary text-white font-semibold px-6 py-3 rounded-full">
+            <span>Tải CV</span>
+            <span id="cv-ripple" class="absolute inset-0 rounded-full bg-white/30 scale-0"></span>
+        </a>
     </section>
 </body>
 </html>

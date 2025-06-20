@@ -1,53 +1,45 @@
 body {
     margin: 0;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: Arial, sans-serif;
     background: #0f172a;
     color: #e2e8f0;
 }
-
 header {
     background: #334155;
-    color: #e2e8f0; /* Unified with body text color */
+    color: #fff;
     padding: 1rem;
 }
-
 header nav a {
     margin-right: 1rem;
-    color: #e2e8f0; /* Unified with body text color */
+    color: #fff;
     text-decoration: none;
 }
-
 .gallery {
     padding: 2rem;
 }
-
 .cards {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
 }
-
 .card {
     background: #1e293b;
     padding: 1rem;
     border: 1px solid #475569;
     text-align: center;
     flex: 1 0 200px;
-    color: #e2e8f0; /* Explicit for clarity */
+    color: #e2e8f0;
 }
-
 footer {
     text-align: center;
     padding: 1rem;
     background: #1e293b;
-    color: #e2e8f0; /* Unified with body text color */
+    color: #fff;
 }
-
 .profile-img {
     width: 150px;
     border-radius: 50%;
 }
-
 .cv {
     padding: 2rem;
 }

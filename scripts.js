@@ -4,26 +4,44 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hero Animation
     const heroTl = gsap.timeline();
     heroTl
-        .from('.hero-title', {duration:1.2, y:100, opacity:0, scale:0.8, ease:'power4.out'})
-        .from('.hero-subtitle', {duration:1, y:50, opacity:0, ease:'power3.out'}, '-=0.8')
-        .from('.social-btn', {duration:0.8, scale:0, rotation:360, opacity:0, ease:'back.out(1.7)', stagger:0.1}, '-=0.6')
-        .from('.cta-button', {duration:1, scale:0, ease:'elastic.out(1,0.5)'}, '-=0.4');
-
-    gsap.to('.particle', {
-        duration: 6,
-        y: -20,
-        x: 10,
-        ease: 'power1.inOut',
-        yoyo: true,
-        repeat: -1,
-        stagger: 0.5
-    });
+        .from('.hero-title', {
+            duration: 1.2,
+            y: 100,
+            opacity: 0,
+            scale: 0.8,
+            ease: 'power4.out'
+        })
+        .from('.hero-subtitle', {
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            ease: 'power3.out'
+        }, '-=0.8')
+        .from('.social-btn', {
+            duration: 0.8,
+            y: 30,
+            opacity: 0,
+            ease: 'back.out(1.7)',
+            stagger: 0.1
+        }, '-=0.6')
+        .from('.cta-button', {
+            duration: 1,
+            scale: 0,
+            ease: 'elastic.out(1, 0.5)'
+        }, '-=0.4');
+    gsap.to('.particle', {duration:6, y:-20, x:10, ease:'power1.inOut', yoyo:true, repeat:-1, stagger:0.5});
+    gsap.to('.gradient-bg', {backgroundPosition:'200% center', duration:20, ease:'none', repeat:-1});
 
     // Repeating hero text animation
-    gsap.timeline({repeat: -1, repeatDelay: 0.5})
-        .to('#hero-title-text', {text: 'Full Stack Developer', duration: 2, ease: 'none'})
-        .to({}, {duration: 1})
-        .to('#hero-title-text', {text: '', duration: 0.5, ease: 'none'});
+    gsap.timeline({repeat:-1, repeatDelay:0.5})
+        .to('#hero-title-text', {text:'Full Stack Developer', duration:2, ease:'none'})
+        .to({}, {duration:1})
+        .to('#hero-title-text', {text:'', duration:0.5, ease:'none'});
+
+    // Section animations
+    animateProfile();
+    animateSkillsProjects();
+    animateHobbyGallery();
 
     // Download CV button entrance and pulse
     gsap.from('#download-cv', {
@@ -33,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
         opacity: 0,
         ease: 'back.out(1.7)'
     });
-
     gsap.to('#download-cv', {
         scale: 1.05,
         repeat: -1,
@@ -41,58 +58,25 @@ document.addEventListener('DOMContentLoaded', () => {
         duration: 1.5,
         ease: 'power1.inOut'
     });
-
-    // Character card animation
-    animateCharacterCard();
-
-    // Skills and Projects animation
-    animateSkillsProjects();
-
-    // Hobby Gallery animation
-    animateHobbyGallery();
+    const downloadBtn = document.getElementById('download-cv');
+    const ripple = document.getElementById('cv-ripple');
+    downloadBtn.addEventListener('mouseenter', () => {
+        gsap.fromTo(ripple,
+            {scale: 0, opacity: 0.4},
+            {scale: 1.5, opacity: 0, duration: 0.8, ease: 'power1.out'}
+        );
+    });
 });
 
-function animateCharacterCard() {
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: '.character-card',
-            start: 'top 80%',
-            toggleActions: 'play none none reverse'
-        }
-    });
 
-    tl.from('.character-card', {
-        duration: 0.8,
-        scale: 0.8,
-        opacity: 0,
-        y: 50,
-        ease: 'back.out(1.7)'
-    })
-    .from('.avatar', {
+function animateProfile() {
+    gsap.from('#profile img, #profile h2, #profile ul li', {
+        scrollTrigger: '#profile',
         duration: 1,
-        scale: 0,
-        rotation: 360,
-        ease: 'elastic.out(1, 0.5)'
-    }, '-=0.5')
-    .from('.level-badge', {
-        duration: 0.6,
-        scale: 0,
-        ease: 'back.out(2)'
-    }, '-=0.3');
+        y: 30,
+        opacity: 0,
+        stagger: 0.2
 
-    document.querySelectorAll('.stat-fill').forEach((fill, index) => {
-        const value = fill.dataset.value;
-        gsap.to(fill, {
-            duration: 1.5,
-            width: `${value}%`,
-            ease: 'power2.out',
-            delay: index * 0.2,
-            scrollTrigger: {
-                trigger: fill,
-                start: 'top 80%',
-                toggleActions: 'play none none reverse'
-            }
-        });
     });
 }
 
@@ -116,10 +100,17 @@ function animateSkillsProjects() {
         card.addEventListener('click', () => {
             const skill = card.dataset.skill;
             document.querySelectorAll('.project-card').forEach(proj => {
-                if (skill === 'all') {
+                const match = skill === 'all' || proj.dataset.skill === skill;
+                if (match) {
                     proj.style.display = 'block';
+                    gsap.fromTo(proj, {opacity: 0, y: 30}, {opacity: 1, y: 0, duration: 0.6});
                 } else {
-                    proj.style.display = proj.dataset.skill === skill ? 'block' : 'none';
+                    gsap.to(proj, {
+                        opacity: 0,
+                        y: 30,
+                        duration: 0.3,
+                        onComplete: () => { proj.style.display = 'none'; }
+                    });
                 }
             });
         });
@@ -135,18 +126,13 @@ function animateSkillsProjects() {
 
 function animateHobbyGallery() {
     gsap.from('.hobby-card', {
-        duration: 1,
-        y: 100,
-        opacity: 0,
-        scale: 0.8,
-        ease: 'power3.out',
-        stagger: {amount: 1.2, from: 'random'},
-        scrollTrigger: {
-            trigger: '.hobby-grid',
-            start: 'top 80%',
-            end: 'bottom 20%',
-            toggleActions: 'play none none reverse'
-        }
+        duration:1,
+        y:100,
+        opacity:0,
+        scale:0.8,
+        ease:'power3.out',
+        stagger:{amount:1.2, from:'random'},
+        scrollTrigger:{trigger:'.hobby-grid', start:'top 80%', end:'bottom 20%', toggleActions:'play none none reverse'}
     });
 
     document.querySelectorAll('.hobby-card').forEach(card => {
@@ -155,4 +141,3 @@ function animateHobbyGallery() {
             window.location.href = `interests/${hobby}.html`;
         });
     });
-}
