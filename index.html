@@ -1,30 +1,118 @@
-<div class="graph">
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio cá nhân</title>
     <link rel="stylesheet" href="styles.css">
     <script src="scripts.js" defer></script>
-    <ul class="months">
-      <li>Jan</li>
-      <li>Feb</li>
-      <li>Mar</li>
-      <li>Apr</li>
-      <li>May</li>
-      <li>Jun</li>
-      <li>Jul</li>
-      <li>Aug</li>
-      <li>Sep</li>
-      <li>Oct</li>
-      <li>Nov</li>
-      <li>Dec</li>
-    </ul>
-    <ul class="days">
-      <li>Sun</li>
-      <li>Mon</li>
-      <li>Tue</li>
-      <li>Wed</li>
-      <li>Thu</li>
-      <li>Fri</li>
-      <li>Sat</li>
-    </ul>
-    <ul class="squares">
-      <!-- added via javascript -->
-    </ul>
-  </div>
+</head>
+<body>
+<header>
+    <h1>Portfolio Cá Nhân</h1>
+    <nav>
+        <a href="#info">Thông tin</a>
+        <a href="#skills">Kĩ năng</a>
+        <a href="#projects">Sản phẩm</a>
+        <a href="#interests">Sở thích</a>
+        <a href="#certs">Chứng chỉ</a>
+        <a href="#contact">Liên hệ</a>
+    </nav>
+</header>
+
+<section id="info" class="info">
+    <h2>Thông tin cá nhân</h2>
+    <div class="character-status">
+        <div class="stat">
+            <span>HP</span>
+            <div class="bar"><div style="width:80%"></div></div>
+        </div>
+        <div class="stat">
+            <span>MP</span>
+            <div class="bar"><div style="width:60%"></div></div>
+        </div>
+        <div class="stat">
+            <span>EXP</span>
+            <div class="bar"><div style="width:40%"></div></div>
+        </div>
+    </div>
+</section>
+
+<section id="skills" class="gallery">
+    <h2>Kĩ năng</h2>
+    <div class="cards">
+        <div class="card" data-skill="html">
+            <h3>HTML</h3>
+        </div>
+        <div class="card" data-skill="css">
+            <h3>CSS</h3>
+        </div>
+        <div class="card" data-skill="js">
+            <h3>JavaScript</h3>
+        </div>
+    </div>
+</section>
+
+<section id="projects" class="gallery">
+    <h2>Sản phẩm</h2>
+    <div class="cards">
+        <div class="card project" data-skills="html css">
+            <h3>Website A</h3>
+            <p class="tags"><a href="#skills" data-skill-ref="html">HTML</a>, <a href="#skills" data-skill-ref="css">CSS</a></p>
+        </div>
+        <div class="card project" data-skills="js">
+            <h3>Ứng dụng B</h3>
+            <p class="tags"><a href="#skills" data-skill-ref="js">JavaScript</a></p>
+        </div>
+    </div>
+</section>
+
+<section id="interests" class="gallery">
+    <h2>Sở thích</h2>
+    <div class="cards">
+        <a class="card" href="interests/photography.html">
+            <h3>Nhiếp ảnh</h3>
+        </a>
+        <a class="card" href="interests/cooking.html">
+            <h3>Nấu ăn</h3>
+        </a>
+        <a class="card" href="interests/gaming.html">
+            <h3>Chơi game</h3>
+        </a>
+    </div>
+</section>
+
+<section id="certs" class="gallery">
+    <h2>Chứng chỉ</h2>
+    <div class="cards">
+        <div class="card cert">
+            <img src="https://via.placeholder.com/100" alt="Logo">
+            <h3>Chứng chỉ A</h3>
+            <p>01/2023 - 03/2023</p>
+            <p>Tôi đã học được rất nhiều điều thú vị.</p>
+        </div>
+        <div class="card cert">
+            <img src="https://via.placeholder.com/100" alt="Logo">
+            <h3>Chứng chỉ B</h3>
+            <p>04/2023 - 06/2023</p>
+            <p>Khoá học mang lại nhiều kinh nghiệm thực tế.</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Liên hệ</h2>
+    <div class="contact-buttons">
+        <a href="https://facebook.com" target="_blank">Facebook</a>
+        <a href="https://instagram.com" target="_blank">Instagram</a>
+        <a href="https://github.com" target="_blank">GitHub</a>
+        <a href="mailto:example@gmail.com">Gmail</a>
+    </div>
+    <a class="cv-btn" href="cv.pdf" download>Tải CV</a>
+</section>
+
+<footer>
+    <p>&copy; 2024 Portfolio</p>
+</footer>
+</body>
+</html>
