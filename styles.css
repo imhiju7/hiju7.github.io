@@ -1,19 +1,19 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     background: #0f172a;
     color: #e2e8f0;
 }
 
 header {
     background: #334155;
-    color: #fff;
+    color: #e2e8f0; /* Unified with body text color */
     padding: 1rem;
 }
 
 header nav a {
     margin-right: 1rem;
-    color: #fff;
+    color: #e2e8f0; /* Unified with body text color */
     text-decoration: none;
 }
 
@@ -33,14 +33,14 @@ header nav a {
     border: 1px solid #475569;
     text-align: center;
     flex: 1 0 200px;
-    color: #e2e8f0;
+    color: #e2e8f0; /* Explicit for clarity */
 }
 
 footer {
     text-align: center;
     padding: 1rem;
     background: #1e293b;
-    color: #fff;
+    color: #e2e8f0; /* Unified with body text color */
 }
 
 .profile-img {

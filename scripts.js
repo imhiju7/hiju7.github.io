@@ -25,12 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .to({}, {duration: 1})
         .to('#hero-title-text', {text: '', duration: 0.5, ease: 'none'});
 
-    // Character card animation
-    animateCharacterCard();
-
-    // Hobby Gallery animation
-    animateHobbyGallery();
-
     // Download CV button entrance and pulse
     gsap.from('#download-cv', {
         scrollTrigger: '#download-cv',
@@ -47,6 +41,15 @@ document.addEventListener('DOMContentLoaded', () => {
         duration: 1.5,
         ease: 'power1.inOut'
     });
+
+    // Character card animation
+    animateCharacterCard();
+
+    // Skills and Projects animation
+    animateSkillsProjects();
+
+    // Hobby Gallery animation
+    animateHobbyGallery();
 });
 
 function animateCharacterCard() {
@@ -89,6 +92,43 @@ function animateCharacterCard() {
                 start: 'top 80%',
                 toggleActions: 'play none none reverse'
             }
+        });
+    });
+}
+
+function animateSkillsProjects() {
+    gsap.from('.skill-card', {
+        scrollTrigger: '.skill-grid',
+        duration: 0.8,
+        y: 50,
+        opacity: 0,
+        stagger: 0.2
+    });
+    gsap.from('.project-card', {
+        scrollTrigger: '.project-grid',
+        duration: 0.8,
+        y: 80,
+        opacity: 0,
+        stagger: 0.2
+    });
+
+    document.querySelectorAll('.skill-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const skill = card.dataset.skill;
+            document.querySelectorAll('.project-card').forEach(proj => {
+                if (skill === 'all') {
+                    proj.style.display = 'block';
+                } else {
+                    proj.style.display = proj.dataset.skill === skill ? 'block' : 'none';
+                }
+            });
+        });
+    });
+
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const id = card.dataset.project;
+            window.location.href = `projects/${id}.html`;
         });
     });
 }
