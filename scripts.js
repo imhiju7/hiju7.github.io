@@ -86,7 +86,7 @@ function animateHobbies() {
 }
 
 function setupButtonRipple() {
-    document.querySelectorAll('.social-btn, #scroll-btn, #download-cv').forEach(btn => {
+    document.querySelectorAll('.social-btn, #scroll-button, #download-cv').forEach(btn => {
         const ripple = btn.querySelector('.ripple');
         if (!ripple) return;
         btn.addEventListener('mouseenter', () => {
@@ -99,23 +99,41 @@ function setupButtonRipple() {
         gsap.to(dl, {scale: 1.05, duration: 1.2, ease: 'power1.inOut', repeat: -1, yoyo: true});
     }
 }
+
 function setupScrollButton() {
-    const btn = document.getElementById("scroll-btn");
-    if (!btn) return;
-    const sections = document.querySelectorAll("section");
-    btn.addEventListener("click", () => {
-        const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 2;
-        if (atBottom) {
-            window.scrollTo({top: 0, behavior: "smooth"});
+    const scrollBtn = document.getElementById('scroll-button');
+    const arrowIcon = document.getElementById('arrow-icon');
+    if (!scrollBtn) return;
+    const sections = document.querySelectorAll('section');
+    let currentIndex = 0;
+
+    function scrollToSection(index) {
+        if (index >= 0 && index < sections.length) {
+            sections[index].scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    scrollBtn.addEventListener('click', () => {
+        if (currentIndex < sections.length - 1) {
+            currentIndex++;
+            scrollToSection(currentIndex);
         } else {
-            const index = [...sections].findIndex(s => s.getBoundingClientRect().top <= 1 && s.getBoundingClientRect().bottom > 1);
-            const next = Math.min(index + 1, sections.length - 1);
-            sections[next].scrollIntoView({behavior: "smooth"});
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            currentIndex = 0;
         }
     });
-    window.addEventListener("scroll", () => {
-        const icon = btn.querySelector("svg");
-        const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 2;
-        icon.classList.toggle("rotate-180", atBottom);
+
+    window.addEventListener('scroll', () => {
+        const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 50;
+        if (arrowIcon) {
+            arrowIcon.style.transform = nearBottom ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+        for (let i = 0; i < sections.length; i++) {
+            const rect = sections[i].getBoundingClientRect();
+            if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                currentIndex = i;
+                break;
+            }
+        }
     });
 }
