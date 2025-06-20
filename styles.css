@@ -18,8 +18,8 @@ header nav a {
     padding: 2rem;
 }
 .cards {
-    display: flex;
-    flex-wrap: wrap;
+    display: inline-flex;
+    flex-wrap: nowrap;
     gap: 1rem;
 }
 .card {
@@ -71,4 +71,18 @@ footer {
 .gradient-bg {
     background: linear-gradient(60deg,#6366f1,#ec4899,#f59e0b);
     background-size: 200% 200%;
+}
+
+/* Horizontal Scroll Snap Gallery */
+.gallery-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.gallery-item {
+    scroll-snap-align: start;
+    display: inline-block;
+    margin-right: 1rem;
 }
