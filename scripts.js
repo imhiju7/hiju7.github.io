@@ -19,7 +19,7 @@ function animateHero() {
       .from('.social-btn', {duration: 0.6, scale: 0, opacity: 0, stagger: 0.1, ease: 'back.out(1.7)'}, '-=0.4')
 
     gsap.timeline({repeat: -1, repeatDelay: 0.5})
-        .to('#hero-title-text', {text: 'Full Stack Developer', duration: 2, ease: 'none'})
+        .to('#hero-title-text', {text: 'AI Researcher', duration: 2, ease: 'none'})
         .to({}, {duration: 1})
         .to('#hero-title-text', {text: '', duration: 0.5, ease: 'none'});
 }
