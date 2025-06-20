@@ -87,7 +87,6 @@ footer {
 .gallery-container::-webkit-scrollbar {
     display: none; /* Chrome, Safari */
 }
-
 .gallery-item {
     scroll-snap-align: start;
     display: inline-block;
