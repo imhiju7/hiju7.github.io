@@ -58,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
         duration: 1.5,
         ease: 'power1.inOut'
     });
-
     const downloadBtn = document.getElementById('download-cv');
     const ripple = document.getElementById('cv-ripple');
     downloadBtn.addEventListener('mouseenter', () => {
@@ -77,6 +76,7 @@ function animateProfile() {
         y: 30,
         opacity: 0,
         stagger: 0.2
+
     });
 }
 
@@ -141,4 +141,3 @@ function animateHobbyGallery() {
             window.location.href = `interests/${hobby}.html`;
         });
     });
-}
