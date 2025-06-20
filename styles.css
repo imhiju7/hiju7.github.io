@@ -1,98 +1,88 @@
-/* Article - https://bitsofco.de/github-contribution-graph-css-grid/ */
-
-/* Grid-related CSS */
-
-:root {
-    --square-size: 10px;
-    --square-gap: 3px;
-    --week-width: calc(var(--square-size) + var(--square-gap));
-    background-color: #0D1117;
-    color: #e6edf3;
-  }
-  .months, .days, .squares {
-    list-style-type: none;
-    padding: 0;          
-    margin: 0;            
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
 }
-  
-  .months { grid-area: months; }
-  .days { grid-area: days; }
-  .squares { grid-area: squares; }
-  
-  .graph {
-    display: inline-grid;
-    grid-template-areas: "empty months"
-                         "days squares";
-    grid-template-columns: auto 1fr;
-    grid-gap: 10px;
-    border-radius: 5px;
-  }
-  
-  .months {
-    display: grid;
-    grid-template-columns: calc(var(--week-width) * 4) /* Jan */
-                           calc(var(--week-width) * 4) /* Feb */
-                           calc(var(--week-width) * 4) /* Mar */
-                           calc(var(--week-width) * 5) /* Apr */
-                           calc(var(--week-width) * 4) /* May */
-                           calc(var(--week-width) * 4) /* Jun */
-                           calc(var(--week-width) * 5) /* Jul */
-                           calc(var(--week-width) * 4) /* Aug */
-                           calc(var(--week-width) * 4) /* Sep */
-                           calc(var(--week-width) * 5) /* Oct */
-                           calc(var(--week-width) * 4) /* Nov */
-                           calc(var(--week-width) * 5) /* Dec */;
-  }
-  
-  .days,
-  .squares {
-    display: grid;
-    grid-gap: var(--square-gap);
-    grid-template-rows: repeat(7, var(--square-size));
-    
-  }
-  
-  .squares {
-    grid-auto-flow: column;
-    grid-auto-columns: var(--square-size);
-  }
-  
-  
-  /* Other styling */
-  
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 10px;
-  }
-  
-  .graph {
-    padding: 10px;
-    border: 1px #e1e4e8 solid;
-    margin: 10px;
-    background-color: #0D1117;
-  }
-  
-  .days li:nth-child(odd) {
-    visibility: hidden;
-  }
-  
-  .squares li {
-    background-color: #161b22;
-    border-radius: 2px;
+header {
+    background: #334155;
+    color: #fff;
+    padding: 1rem;
+}
+header nav a {
+    margin-right: 1rem;
+    color: #fff;
+    text-decoration: none;
+}
+.gallery {
+    padding: 2rem;
+}
+.cards {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    gap: 1rem;
+}
+.card {
+    background: #1e293b;
+    padding: 1rem;
+    border: 1px solid #475569;
+    text-align: center;
+    flex: 1 0 200px;
+    color: #e2e8f0;
+}
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: #1e293b;
+    color: #fff;
+}
+.profile-img {
+    width: 150px;
+    border-radius: 50%;
+}
+.cv {
+    padding: 2rem;
+}
+.ripple {
+    position: absolute;
+    inset: 0;
+    background: white;
+    opacity: 0.2;
+    border-radius: inherit;
+    transform: scale(0);
+    pointer-events: none;
+}
+#scroll-button {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    padding: 12px;
+    background: #6366f1;
+    color: white;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+#scroll-button:hover {
+    background: #4f46e5;
+}
+.gradient-bg {
+    background: linear-gradient(60deg,#6366f1,#ec4899,#f59e0b);
+    background-size: 200% 200%;
+}
 
-  }
-  
-  .squares li[data-level="4"] {
-    background-color: #c6e48b;
-  }
-  
-  .squares li[data-level="3"] {
-    background-color: #7bc96f;
-  }
-  
-  .squares li[data-level="2"] {
-    background-color: #196127;
-  }
-  .squares li[data-level="1"] {
-    background-color: #196127;
-  }
+/* Horizontal Scroll Snap Gallery */
+.gallery-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.gallery-item {
+    scroll-snap-align: start;
+    display: inline-block;
+    margin-right: 1rem;
+}
