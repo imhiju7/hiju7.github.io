@@ -122,7 +122,7 @@ footer {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     line-height: 1rem;
 }
 @media (max-width: 640px) {
