@@ -1,6 +1,14 @@
-// Add squares
-const squares = document.querySelector('.squares');
-for (var i = 1; i < 365; i++) {
-  const level = Math.floor(Math.random() * 4);  
-  squares.insertAdjacentHTML('beforeend', `<li data-level="${level}"></li>`);
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const skillCards = document.querySelectorAll('[data-skill]');
+    const projects = document.querySelectorAll('.project');
+
+    skillCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const skill = card.dataset.skill;
+            projects.forEach(p => {
+                const skills = p.dataset.skills.split(' ');
+                p.style.display = skills.includes(skill) ? 'block' : 'none';
+            });
+        });
+    });
+});
