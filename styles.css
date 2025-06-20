@@ -3,6 +3,11 @@ body {
     font-family: Arial, sans-serif;
     background: #0f172a;
     color: #e2e8f0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+body::-webkit-scrollbar {
+    display: none;
 }
 header {
     background: #334155;
@@ -57,16 +62,17 @@ footer {
     bottom: 24px;
     right: 24px;
     z-index: 9999;
-    padding: 12px;
+    padding: 16px;
     background: #6366f1;
     color: white;
-    border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    border-radius: 9999px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 #scroll-button:hover {
     background: #4f46e5;
+    transform: translateY(-2px);
 }
 .gradient-bg {
     background: linear-gradient(60deg,#6366f1,#ec4899,#f59e0b);
