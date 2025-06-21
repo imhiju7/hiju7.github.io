@@ -328,12 +328,14 @@ function initAlienScene() {
     camera.position.set(0, 10, 20);
     let time = 0;
     let animationFrameId;
+    let running = false;
     const timeline = gsap.timeline({ repeat: -1, yoyo: true });
     timeline.to(pointLight.color, { r: 1, g: 0, b: 1, duration: 2 }).to(pointLight.color, { r: 0, g: 1, b: 1, duration: 2 });
     const timeline2 = gsap.timeline({ repeat: -1, yoyo: true });
     timeline2.to(pointLight2.color, { r: 0, g: 1, b: 1, duration: 1.5 }).to(pointLight2.color, { r: 1, g: 0, b: 1, duration: 1.5 });
 
     function animate() {
+        if (!running) return;
         animationFrameId = requestAnimationFrame(animate);
         time += 0.002;
         camera.position.x = Math.sin(time) * 35;
@@ -363,7 +365,20 @@ function initAlienScene() {
         pointLight2.position.z = Math.cos(time * 1.5) * 15;
         composer.render();
     }
-    animate();
+    const st = ScrollTrigger.create({
+        trigger: wrapper,
+        start: 'top bottom',
+        end: 'bottom top',
+        onToggle: self => {
+            running = self.isActive;
+            if (running) animate();
+            else cancelAnimationFrame(animationFrameId);
+        }
+    });
+    if (st.isActive) {
+        running = true;
+        animate();
+    }
 
     function onWindowResize() {
         ({ width, height } = getSize());
