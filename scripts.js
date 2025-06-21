@@ -245,7 +245,6 @@ function setupCarousels() {
         enableDragScroll(container);
     });
 }
-
 function initAlienScene() {
     const container = document.getElementById('alien-scene');
     if (!container || typeof THREE === 'undefined') return;
