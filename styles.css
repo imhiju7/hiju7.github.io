@@ -159,3 +159,12 @@ footer {
         scroll-padding-left: 1rem;
     }
 }
+
+/* Profile section custom styles */
+.profile-card {
+    overflow: hidden;
+}
+
+#forest-scene canvas {
+    display: block;
+}
