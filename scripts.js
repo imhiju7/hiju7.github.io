@@ -361,6 +361,7 @@ function initAlienScene() {
         pointLight.position.z = Math.cos(time) * 20;
         pointLight2.position.x = Math.sin(time * 1.5) * 15;
         pointLight2.position.z = Math.cos(time * 1.5) * 15;
+
         composer.render();
     }
     animate();
