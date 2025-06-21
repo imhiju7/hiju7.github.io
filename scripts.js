@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupButtonRipple();
     setupScrollButton();
     setupCarousels();
+    initAlienScene();
 });
 
 function animateHero() {
@@ -240,7 +241,158 @@ function enableDragScroll(container) {
 }
 
 function setupCarousels() {
+    initAlienScene();
     document.querySelectorAll('.gallery-container').forEach(container => {
         enableDragScroll(container);
+    });
+}
+function initAlienScene() {
+    const canvas = document.getElementById('alien-canvas');
+    if (!canvas) return;
+    const wrapper = canvas.parentElement;
+    const scene = new THREE.Scene();
+    function getSize() {
+        return { width: wrapper.clientWidth, height: wrapper.clientHeight };
+    }
+    let { width, height } = getSize();
+    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        powerPreference: "high-performance",
+        canvas: canvas
+    });
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(width, height);
+    const composer = new THREE.EffectComposer(renderer);
+    const renderPass = new THREE.RenderPass(scene, camera);
+    composer.addPass(renderPass);
+    const bloomPass = new THREE.UnrealBloomPass(new THREE.Vector2(width, height), 2.0, 0.3, 0.9);
+    composer.addPass(bloomPass);
+
+    const simplex = new SimplexNoise();
+    const geometry = new THREE.PlaneGeometry(100, 100, 128, 128);
+    const material = new THREE.MeshStandardMaterial({
+        color: 0x333333,
+        emissive: 0x1a1a1a,
+        metalness: 0.9,
+        roughness: 0.1,
+        wireframe: false,
+        flatShading: true
+    });
+    const vertices = geometry.attributes.position.array;
+    for (let i = 0; i < vertices.length; i += 3) {
+        const x = vertices[i] / 20;
+        const y = vertices[i + 1] / 20;
+        vertices[i + 2] = simplex.noise2D(x, y) * 6 + simplex.noise2D(x * 2, y * 2) * 3 + simplex.noise2D(x * 4, y * 4) * 1.5 + simplex.noise2D(x * 8, y * 8) * 0.75;
+    }
+    geometry.computeVertexNormals();
+    const terrain = new THREE.Mesh(geometry, material);
+    terrain.rotation.x = -Math.PI / 2;
+    scene.add(terrain);
+
+    const particleCount = Math.min(2000, window.innerWidth < 768 ? 1000 : 2000);
+    const snowflakes = [];
+    const particleSpeeds = new Float32Array(particleCount);
+    for (let i = 0; i < particleCount; i++) {
+        const c = document.createElement('canvas');
+        c.width = 32;
+        c.height = 32;
+        const ctx = c.getContext('2d');
+        ctx.font = '24px Arial';
+        ctx.fillStyle = `rgb(${Math.random() * 127 + 128}, ${Math.random() * 204 + 51}, 255)`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('❄', 16, 16);
+        const texture = new THREE.CanvasTexture(c);
+        texture.needsUpdate = true;
+        const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, transparent: true, blending: THREE.AdditiveBlending }));
+        sprite.position.set(Math.random() * 100 - 50, Math.random() * 50 + 20, Math.random() * 100 - 50);
+        particleSpeeds[i] = Math.random() * 0.15 + 0.05;
+        sprite.scale.set(0.5, 0.5, 0.5);
+        snowflakes.push(sprite);
+        scene.add(sprite);
+    }
+
+    const ambientLight = new THREE.AmbientLight(0x333333);
+    scene.add(ambientLight);
+    const directionalLight = new THREE.DirectionalLight(0xff3366, 1.5);
+    directionalLight.position.set(1, 1, 1);
+    scene.add(directionalLight);
+    const pointLight = new THREE.PointLight(0x66ffff, 3);
+    pointLight.position.set(0, 10, 0);
+    scene.add(pointLight);
+    const pointLight2 = new THREE.PointLight(0xff66ff, 2);
+    pointLight2.position.set(0, 15, 0);
+    scene.add(pointLight2);
+    scene.fog = new THREE.FogExp2(0x000000, 0.015);
+    camera.position.set(0, 10, 20);
+    let time = 0;
+    let animationFrameId;
+    let running = false;
+    const timeline = gsap.timeline({ repeat: -1, yoyo: true });
+    timeline.to(pointLight.color, { r: 1, g: 0, b: 1, duration: 2 }).to(pointLight.color, { r: 0, g: 1, b: 1, duration: 2 });
+    const timeline2 = gsap.timeline({ repeat: -1, yoyo: true });
+    timeline2.to(pointLight2.color, { r: 0, g: 1, b: 1, duration: 1.5 }).to(pointLight2.color, { r: 1, g: 0, b: 1, duration: 1.5 });
+
+    function animate() {
+        if (!running) return;
+        animationFrameId = requestAnimationFrame(animate);
+        time += 0.002;
+        camera.position.x = Math.sin(time) * 35;
+        camera.position.z = Math.cos(time) * 35;
+        camera.position.y = 12 + Math.sin(time * 0.5) * 6;
+        camera.lookAt(Math.sin(time * 0.25) * 10, 0, Math.cos(time * 0.25) * 10);
+        const positions = geometry.attributes.position.array;
+        for (let i = 0; i < positions.length; i += 3) {
+            const x = positions[i] / 20;
+            const y = positions[i + 1] / 20;
+            positions[i + 2] = simplex.noise2D(x + time * 0.2, y) * 6 + simplex.noise2D((x + time * 0.4) * 2, y * 2) * 3 + simplex.noise2D((x + time * 0.8) * 4, y * 4) * 1.5 + simplex.noise2D((x + time * 1.2) * 8, y * 8) * 0.75;
+        }
+        geometry.attributes.position.needsUpdate = true;
+        geometry.computeVertexNormals();
+        snowflakes.forEach((snowflake, index) => {
+            snowflake.position.y -= particleSpeeds[index];
+            snowflake.position.x += Math.sin(time + index) * 0.02;
+            snowflake.position.z += Math.cos(time + index) * 0.02;
+            snowflake.rotation.z += 0.01;
+            if (snowflake.position.y < 0) {
+                snowflake.position.set(Math.random() * 100 - 50, 50, Math.random() * 100 - 50);
+            }
+        });
+        pointLight.position.x = Math.sin(time) * 20;
+        pointLight.position.z = Math.cos(time) * 20;
+        pointLight2.position.x = Math.sin(time * 1.5) * 15;
+        pointLight2.position.z = Math.cos(time * 1.5) * 15;
+        composer.render();
+    }
+    const st = ScrollTrigger.create({
+        trigger: wrapper,
+        start: 'top bottom',
+        end: 'bottom top',
+        onToggle: self => {
+            running = self.isActive;
+            if (running) animate();
+            else cancelAnimationFrame(animationFrameId);
+        }
+    });
+    if (st.isActive) {
+        running = true;
+        animate();
+    }
+
+    function onWindowResize() {
+        ({ width, height } = getSize());
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+        composer.setSize(width, height);
+    }
+    window.addEventListener('resize', onWindowResize, false);
+    window.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            cancelAnimationFrame(animationFrameId);
+        } else {
+            animate();
+        }
     });
 }
