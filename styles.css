@@ -195,7 +195,6 @@ footer {
     position: relative;
     overflow: hidden;
 }
-
 @media (max-width: 768px) {
     #profile-card {
         position: static;
