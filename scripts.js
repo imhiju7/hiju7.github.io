@@ -241,6 +241,7 @@ function enableDragScroll(container) {
 }
 
 function setupCarousels() {
+    initAlienScene();
     document.querySelectorAll('.gallery-container').forEach(container => {
         enableDragScroll(container);
     });
