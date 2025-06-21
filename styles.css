@@ -165,13 +165,9 @@ footer {
     overflow: hidden;
 }
 #profile-card {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    overflow-y: auto;
-    max-width: 20rem;
-    z-index: 1000;
+    width: 18rem;
+    max-height: 100%;
+    flex-shrink: 0;
 }
 
 .profile-info {
@@ -179,22 +175,25 @@ footer {
 }
 
 .content-wrapper {
-    margin-left: 20rem;
-    height: 100vh;
     display: flex;
     flex-direction: column;
+    height: 100vh;
     overflow-y: auto;
 }
 
+.github-contrib {
+    height: 35vh;
+}
 .github-contrib img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: contain;
 }
 
 .alien-wrapper {
     flex: 1;
     min-height: 0;
-    max-height: 100%;
+    max-height: 65vh;
 }
 
 @media (max-width: 768px) {
