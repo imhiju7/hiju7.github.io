@@ -8,6 +8,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+<script src="https://unpkg.com/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -35,10 +44,15 @@
         <p class="hero-subtitle text-gray-300 mb-8 px-4 max-w-2xl">Learn &amp; Growth</p>
 </section>
     <!-- Profile -->
-    <section id="profile" class="h-screen flex items-center justify-center px-4 bg-slate-800">
-        <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 max-w-md text-center space-y-4">
-            <img class="mx-auto w-32 h-32 rounded-full border-4 border-primary" src="images/profile.jpg" alt="Profile">
-            <h2 class="text-3xl font-bold">Hieu Nguyen Tan</h2>
+    <section id="profile" class="bg-slate-800 min-h-screen flex flex-col md:flex-row">
+    <aside id="profile-card" class="profile-card bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-6 w-full md:w-auto">
+        <div class="profile-image flex justify-center mb-4">
+            <div class="p-1 bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 rounded-full">
+                <img src="images/profile.jpg" alt="Profile" class="rounded-full w-40 h-40 object-cover">
+            </div>
+        </div>
+        <div class="profile-info space-y-3">
+            <h2 class="text-3xl font-bold text-white">Hieu Nguyen Tan</h2>
             <ul class="text-gray-300 space-y-1">
                 <li><strong>Birthday:</strong> 04/11/2003</li>
                 <li><strong>Horoscope:</strong> Scorpion</li>
@@ -46,7 +60,17 @@
                 <li><strong>Relationship:</strong> Dating</li>
             </ul>
         </div>
-    </section>
+    </aside>
+    <div class="content-wrapper flex-1 flex flex-col">
+        <div id="github-contrib" class="github-contrib p-4 flex-none">
+            <img src="https://ghchart.rshah.org/imhiju7" alt="GitHub contributions" class="rounded-xl shadow-lg">
+        </div>
+        <div class="alien-wrapper p-4 flex-1">
+            <canvas id="alien-canvas"></canvas>
+        </div>
+    </div>
+</section>
+
 
     <!-- Skills & Projects -->
     <section id="skills" class="h-screen flex flex-col overflow-y-auto no-scrollbar py-20 px-4 bg-slate-900">
