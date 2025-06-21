@@ -123,6 +123,19 @@ footer {
     line-height: 1.25rem;
 }
 
+/* Larger layout for certificate preview */
+.certificate-card {
+    width: 20rem;
+    height: auto;
+    padding: 1rem;
+}
+
+.certificate-card img {
+    height: 12rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
 .hobby-card h3 {
     font-size: 0.875rem;
     line-height: 1.25rem;
