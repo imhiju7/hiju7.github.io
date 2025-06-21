@@ -37,10 +37,10 @@
 </section>
     <!-- Profile -->
     <section id="profile" class="relative bg-slate-800 min-h-screen flex flex-col md:flex-row overflow-hidden">
-    <div class="absolute inset-0 -z-10 w-full h-full">
-        <iframe src="allien.html" class="w-full h-full border-none pointer-events-none" scrolling="no"></iframe>
+    <div class="absolute inset-0 z-0 w-full h-full pointer-events-none">
+        <iframe src="allien.html" class="w-full h-full border-none" scrolling="no"></iframe>
     </div>
-    <aside id="profile-card" class="profile-card bg-white/5 backdrop-blur-xl border border-white/10 p-8 md:p-6 w-full md:w-auto">
+    <aside id="profile-card" class="profile-card relative z-10 bg-white/5 backdrop-blur-xl border border-white/10 p-8 md:p-6 w-full md:w-auto">
         <div class="profile-image flex justify-center mb-4">
             <div class="p-1 bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 rounded-full">
                 <img src="images/profile.jpg" alt="Profile" class="rounded-full w-40 h-40 object-cover">
@@ -56,7 +56,7 @@
             </ul>
         </div>
     </aside>
-    <div class="content-wrapper flex-1 flex flex-col z-10">
+    <div class="content-wrapper relative z-10 flex-1 flex flex-col">
         <div id="github-contrib" class="github-contrib p-4 flex-none">
             <img src="https://ghchart.rshah.org/imhiju7" alt="GitHub contributions" class="rounded-xl shadow-lg">
         </div>
