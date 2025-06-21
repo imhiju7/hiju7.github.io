@@ -241,33 +241,32 @@ function enableDragScroll(container) {
 }
 
 function setupCarousels() {
+    initAlienScene();
     document.querySelectorAll('.gallery-container').forEach(container => {
         enableDragScroll(container);
     });
 }
 function initAlienScene() {
-    const container = document.getElementById('alien-scene');
-    if (!container || typeof THREE === 'undefined') return;
-
+    const canvas = document.getElementById('alien-canvas');
+    if (!canvas) return;
+    const wrapper = canvas.parentElement;
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+    function getSize() {
+        return { width: wrapper.clientWidth, height: wrapper.clientHeight };
+    }
+    let { width, height } = getSize();
+    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({
         antialias: true,
-        powerPreference: 'high-performance'
+        powerPreference: "high-performance",
+        canvas: canvas
     });
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    container.appendChild(renderer.domElement);
-
+    renderer.setSize(width, height);
     const composer = new THREE.EffectComposer(renderer);
     const renderPass = new THREE.RenderPass(scene, camera);
     composer.addPass(renderPass);
-    const bloomPass = new THREE.UnrealBloomPass(
-        new THREE.Vector2(container.clientWidth, container.clientHeight),
-        2.0,
-        0.3,
-        0.9
-    );
+    const bloomPass = new THREE.UnrealBloomPass(new THREE.Vector2(width, height), 2.0, 0.3, 0.9);
     composer.addPass(bloomPass);
 
     const simplex = new SimplexNoise();
@@ -284,11 +283,7 @@ function initAlienScene() {
     for (let i = 0; i < vertices.length; i += 3) {
         const x = vertices[i] / 20;
         const y = vertices[i + 1] / 20;
-        vertices[i + 2] =
-            simplex.noise2D(x, y) * 6 +
-            simplex.noise2D(x * 2, y * 2) * 3 +
-            simplex.noise2D(x * 4, y * 4) * 1.5 +
-            simplex.noise2D(x * 8, y * 8) * 0.75;
+        vertices[i + 2] = simplex.noise2D(x, y) * 6 + simplex.noise2D(x * 2, y * 2) * 3 + simplex.noise2D(x * 4, y * 4) * 1.5 + simplex.noise2D(x * 8, y * 8) * 0.75;
     }
     geometry.computeVertexNormals();
     const terrain = new THREE.Mesh(geometry, material);
@@ -299,29 +294,19 @@ function initAlienScene() {
     const snowflakes = [];
     const particleSpeeds = new Float32Array(particleCount);
     for (let i = 0; i < particleCount; i++) {
-        const canvas = document.createElement('canvas');
-        canvas.width = 32;
-        canvas.height = 32;
-        const ctx = canvas.getContext('2d');
+        const c = document.createElement('canvas');
+        c.width = 32;
+        c.height = 32;
+        const ctx = c.getContext('2d');
         ctx.font = '24px Arial';
         ctx.fillStyle = `rgb(${Math.random() * 127 + 128}, ${Math.random() * 204 + 51}, 255)`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText('❄', 16, 16);
-        const texture = new THREE.CanvasTexture(canvas);
+        const texture = new THREE.CanvasTexture(c);
         texture.needsUpdate = true;
-        const sprite = new THREE.Sprite(
-            new THREE.SpriteMaterial({
-                map: texture,
-                transparent: true,
-                blending: THREE.AdditiveBlending
-            })
-        );
-        sprite.position.set(
-            Math.random() * 100 - 50,
-            Math.random() * 50 + 20,
-            Math.random() * 100 - 50
-        );
+        const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, transparent: true, blending: THREE.AdditiveBlending }));
+        sprite.position.set(Math.random() * 100 - 50, Math.random() * 50 + 20, Math.random() * 100 - 50);
         particleSpeeds[i] = Math.random() * 0.15 + 0.05;
         sprite.scale.set(0.5, 0.5, 0.5);
         snowflakes.push(sprite);
@@ -341,19 +326,12 @@ function initAlienScene() {
     scene.add(pointLight2);
     scene.fog = new THREE.FogExp2(0x000000, 0.015);
     camera.position.set(0, 10, 20);
-
     let time = 0;
     let animationFrameId;
-
     const timeline = gsap.timeline({ repeat: -1, yoyo: true });
-    timeline
-        .to(pointLight.color, { r: 1, g: 0, b: 1, duration: 2 })
-        .to(pointLight.color, { r: 0, g: 1, b: 1, duration: 2 });
-
+    timeline.to(pointLight.color, { r: 1, g: 0, b: 1, duration: 2 }).to(pointLight.color, { r: 0, g: 1, b: 1, duration: 2 });
     const timeline2 = gsap.timeline({ repeat: -1, yoyo: true });
-    timeline2
-        .to(pointLight2.color, { r: 0, g: 1, b: 1, duration: 1.5 })
-        .to(pointLight2.color, { r: 1, g: 0, b: 1, duration: 1.5 });
+    timeline2.to(pointLight2.color, { r: 0, g: 1, b: 1, duration: 1.5 }).to(pointLight2.color, { r: 1, g: 0, b: 1, duration: 1.5 });
 
     function animate() {
         animationFrameId = requestAnimationFrame(animate);
@@ -362,34 +340,23 @@ function initAlienScene() {
         camera.position.z = Math.cos(time) * 35;
         camera.position.y = 12 + Math.sin(time * 0.5) * 6;
         camera.lookAt(Math.sin(time * 0.25) * 10, 0, Math.cos(time * 0.25) * 10);
-
         const positions = geometry.attributes.position.array;
         for (let i = 0; i < positions.length; i += 3) {
             const x = positions[i] / 20;
             const y = positions[i + 1] / 20;
-            positions[i + 2] =
-                simplex.noise2D(x + time * 0.2, y) * 6 +
-                simplex.noise2D((x + time * 0.4) * 2, y * 2) * 3 +
-                simplex.noise2D((x + time * 0.8) * 4, y * 4) * 1.5 +
-                simplex.noise2D((x + time * 1.2) * 8, y * 8) * 0.75;
+            positions[i + 2] = simplex.noise2D(x + time * 0.2, y) * 6 + simplex.noise2D((x + time * 0.4) * 2, y * 2) * 3 + simplex.noise2D((x + time * 0.8) * 4, y * 4) * 1.5 + simplex.noise2D((x + time * 1.2) * 8, y * 8) * 0.75;
         }
         geometry.attributes.position.needsUpdate = true;
         geometry.computeVertexNormals();
-
         snowflakes.forEach((snowflake, index) => {
             snowflake.position.y -= particleSpeeds[index];
             snowflake.position.x += Math.sin(time + index) * 0.02;
             snowflake.position.z += Math.cos(time + index) * 0.02;
             snowflake.rotation.z += 0.01;
             if (snowflake.position.y < 0) {
-                snowflake.position.set(
-                    Math.random() * 100 - 50,
-                    50,
-                    Math.random() * 100 - 50
-                );
+                snowflake.position.set(Math.random() * 100 - 50, 50, Math.random() * 100 - 50);
             }
         });
-
         pointLight.position.x = Math.sin(time) * 20;
         pointLight.position.z = Math.cos(time) * 20;
         pointLight2.position.x = Math.sin(time * 1.5) * 15;
@@ -399,13 +366,14 @@ function initAlienScene() {
     }
     animate();
 
-    function onResize() {
-        camera.aspect = container.clientWidth / container.clientHeight;
+    function onWindowResize() {
+        ({ width, height } = getSize());
+        camera.aspect = width / height;
         camera.updateProjectionMatrix();
-        renderer.setSize(container.clientWidth, container.clientHeight);
-        composer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setSize(width, height);
+        composer.setSize(width, height);
     }
-    window.addEventListener('resize', onResize, false);
+    window.addEventListener('resize', onWindowResize, false);
     window.addEventListener('visibilitychange', () => {
         if (document.hidden) {
             cancelAnimationFrame(animationFrameId);
