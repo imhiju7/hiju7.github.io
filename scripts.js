@@ -26,12 +26,25 @@ function animateHero() {
 }
 
 function animateProfile() {
-    gsap.from('#profile > div', {
-        scrollTrigger: '#profile',
-        y: 50,
-        opacity: 0,
-        duration: 1
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: '#profile-card',
+            start: 'top 80%'
+        }
     });
+    tl.from('#profile-card', {y: 50, opacity: 0, duration: 0.8});
+    tl.from('#profile-card .profile-image', {
+        scale: 0,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'back.out(1.7)'
+    }, '-=0.4');
+    tl.from('#profile-card .profile-info li', {
+        x: 30,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 0.6
+    }, '-=0.6');
 }
 
 function animateCertificates() {

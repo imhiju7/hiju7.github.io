@@ -36,15 +36,21 @@
 </section>
     <!-- Profile -->
     <section id="profile" class="h-screen flex items-center justify-center px-4 bg-slate-800">
-        <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 max-w-md text-center space-y-4">
-            <img class="mx-auto w-32 h-32 rounded-full border-4 border-primary" src="images/profile.jpg" alt="Profile">
-            <h2 class="text-3xl font-bold">Hieu Nguyen Tan</h2>
-            <ul class="text-gray-300 space-y-1">
-                <li><strong>Birthday:</strong> 04/11/2003</li>
-                <li><strong>Horoscope:</strong> Scorpion</li>
-                <li><strong>Based in:</strong> Ho Chi Minh City, Viet Nam</li>
-                <li><strong>Relationship:</strong> Dating</li>
-            </ul>
+        <div id="profile-card" class="profile-card bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 max-w-2xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="profile-image flex justify-center">
+                <div class="p-1 bg-gradient-to-tr from-primary via-accent to-secondary rounded-full">
+                    <img src="images/profile.jpg" alt="Profile" class="rounded-full w-40 h-40 object-cover">
+                </div>
+            </div>
+            <div class="profile-info text-center md:text-left space-y-3">
+                <h2 class="text-3xl font-bold">Hieu Nguyen Tan</h2>
+                <ul class="text-gray-300 space-y-1">
+                    <li><strong>Birthday:</strong> 04/11/2003</li>
+                    <li><strong>Horoscope:</strong> Scorpion</li>
+                    <li><strong>Based in:</strong> Ho Chi Minh City, Viet Nam</li>
+                    <li><strong>Relationship:</strong> Dating</li>
+                </ul>
+            </div>
         </div>
     </section>
 
