@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupButtonRipple();
     setupScrollButton();
     setupCarousels();
+    initForestScene();
 });
 
 function animateHero() {
@@ -243,4 +244,78 @@ function setupCarousels() {
     document.querySelectorAll('.gallery-container').forEach(container => {
         enableDragScroll(container);
     });
+}
+
+function initForestScene() {
+    const container = document.getElementById('forest-scene');
+    if (!container || typeof THREE === 'undefined') return;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 100);
+    camera.position.set(0, 2, 5);
+
+    const renderer = new THREE.WebGLRenderer({alpha: true});
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    container.appendChild(renderer.domElement);
+
+    const layers = [];
+    const treeGeo = new THREE.ConeGeometry(0.5, 2, 8);
+    const treeMat = new THREE.MeshStandardMaterial({color: 0x228b22});
+    for (let i = 0; i < 3; i++) {
+        const group = new THREE.Group();
+        group.position.z = -i * 2;
+        for (let j = 0; j < 20; j++) {
+            const mesh = new THREE.Mesh(treeGeo, treeMat);
+            mesh.position.set((Math.random() - 0.5) * 10, 0, (Math.random() - 0.5) * 4);
+            mesh.scale.y = 1 + Math.random();
+            group.add(mesh);
+        }
+        scene.add(group);
+        layers.push(group);
+    }
+
+    const light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(5, 10, 7);
+    scene.add(light);
+
+    function onResize() {
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+    }
+    window.addEventListener('resize', onResize);
+
+    const mouse = {x: 0, y: 0};
+    container.addEventListener('mousemove', e => {
+        const rect = container.getBoundingClientRect();
+        mouse.x = (e.clientX - rect.left) / rect.width - 0.5;
+        mouse.y = (e.clientY - rect.top) / rect.height - 0.5;
+    });
+
+    ScrollTrigger.create({
+        trigger: container,
+        start: 'top bottom',
+        end: 'bottom top',
+        onUpdate: self => {
+            layers.forEach((layer, i) => {
+                layer.position.z = -i * 2 + self.progress * i * 4;
+            });
+        }
+    });
+
+    function animate() {
+        requestAnimationFrame(animate);
+        layers.forEach((layer, i) => {
+            gsap.to(layer.rotation, {
+                x: mouse.y * 0.3,
+                y: mouse.x * 0.3,
+                duration: 0.6,
+                overwrite: true
+            });
+        });
+        renderer.render(scene, camera);
+    }
+    animate();
 }
