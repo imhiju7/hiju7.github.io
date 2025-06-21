@@ -159,3 +159,58 @@ footer {
         scroll-padding-left: 1rem;
     }
 }
+
+/* Profile section custom styles */
+.profile-card {
+    overflow: hidden;
+}
+#profile-card {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    max-width: 20rem;
+    z-index: 1000;
+}
+
+.profile-info {
+    text-align: left;
+}
+
+.content-wrapper {
+    margin-left: 20rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.github-contrib img {
+    width: 100%;
+    height: auto;
+}
+
+.alien-wrapper {
+    flex: 1;
+    min-height: 0;
+    max-height: 100%;
+}
+
+@media (max-width: 768px) {
+    #profile-card {
+        position: static;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        max-height: 50vh;
+    }
+    .content-wrapper {
+        margin-left: 0;
+        height: auto;
+        overflow-y: visible;
+    }
+    .alien-wrapper {
+        height: 24rem;
+    }
+}
