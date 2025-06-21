@@ -164,6 +164,63 @@ footer {
 .profile-card {
     overflow: hidden;
 }
-#forest-scene canvas {
+
+#alien-scene {
+    position: relative;
+}
+
+#alien-scene canvas {
     display: block;
+    width: 100%;
+    height: 100%;
+}
+
+#alien-scene .button-3d {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: min(15px, 4vw) min(30px, 8vw);
+    font-family: 'Press Start 2P', cursive;
+    font-size: clamp(12px, 2vw, 16px);
+    color: #fff;
+    background: linear-gradient(45deg, #ff3366, #66ffff);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transform: perspective(1000px) rotateX(10deg);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    user-select: none;
+    z-index: 10;
+}
+
+#alien-scene .button-3d:hover,
+#alien-scene .button-3d:focus {
+    transform: perspective(1000px) rotateX(0deg) scale(1.05);
+    outline: none;
+}
+
+#alien-scene .credits {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-family: 'Press Start 2P', cursive;
+    color: #fff;
+    font-size: clamp(10px, 1.5vw, 14px);
+    text-shadow: 0 0 10px #66ffff;
+    z-index: 10;
+    user-select: none;
+}
+
+@media (max-width: 768px) {
+    #alien-scene .button-3d {
+        bottom: 10px;
+        left: 10px;
+    }
+
+    #alien-scene .credits {
+        bottom: 10px;
+        right: 10px;
+    }
 }
